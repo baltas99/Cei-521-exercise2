@@ -1,10 +1,11 @@
 import streamlit as st
 import requests
 
-def get_weather(city):
-    if 'button_clicked' not in st.session_state:
-        st.session_state.button_clicked = False
+# Initialize session state
+if 'button_clicked' not in st.session_state:
+    st.session_state.button_clicked = False
 
+def get_weather(city):
     if st.button(f"Get Weather for {city}") or not st.session_state.button_clicked:
         st.session_state.button_clicked = True
         
@@ -23,8 +24,11 @@ def get_weather(city):
         else:
             st.warning(f"Failed to retrieve weather data for {city}.")
 
-
 def get_weather_for_city():
+    # Initialize session state
+    if 'button_clicked' not in st.session_state:
+        st.session_state.button_clicked = False
+
     # Text input for city inside the function
     city = st.text_input("Enter a town name:")
 
@@ -45,12 +49,3 @@ def get_weather_for_city():
             st.write(f"Humidity: {weather_data['main']['humidity']}%")
         else:
             st.warning(f"Failed to retrieve weather data for {city}.")
-
-
-
-
-
-
-
-
-
