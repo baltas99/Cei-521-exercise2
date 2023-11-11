@@ -1,5 +1,11 @@
 import streamlit as st
 import requests
+import os
+
+if 'PORT' in os.environ:
+    port = int(os.environ['PORT'])
+    st.set_option('server.port', port)
+
 
 # Initialize session state
 if 'button_clicked' not in st.session_state:
