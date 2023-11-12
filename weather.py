@@ -2,15 +2,16 @@ import streamlit as st
 import requests
 import os
 
-
-# Initialize session state
-if 'button_clicked' not in st.session_state:
-    st.session_state.button_clicked = False
+# Function to check or initialize the button click state
+def check_button_state():
+    if 'button_clicked' not in st.session_state:
+        st.session_state['button_clicked'] = False
 
 def get_weather(city):
-    if st.button(f"Get Weather for {city}") or not st.session_state.button_clicked:
-        st.session_state.button_clicked = True
-        
+    check_button_state()
+    if st.button(f"Get Weather for {city}"):
+        st.session_state['button_clicked'] = True
+        # Your existing API call logic
         api_key = "31061e71138b8a05356fba63f13034f8"
         url = "https://api.openweathermap.org/data/2.5/weather"
         params = {"q": city, "appid": api_key, "units": "metric"}
@@ -27,16 +28,11 @@ def get_weather(city):
             st.warning(f"Failed to retrieve weather data for {city}.")
 
 def get_weather_for_city():
-    # Initialize session state
-    if 'button_clicked' not in st.session_state:
-        st.session_state.button_clicked = False
-
-    # Text input for city inside the function
+    check_button_state()
     city = st.text_input("Enter a town name:")
-
-    if st.button("Search") or not st.session_state.button_clicked:
-        st.session_state.button_clicked = True
-
+    if st.button("Search"):
+        st.session_state['button_clicked'] = True
+        # Your existing API call logic
         api_key = "31061e71138b8a05356fba63f13034f8"
         url = "https://api.openweathermap.org/data/2.5/weather"
         params = {"q": city, "appid": api_key, "units": "metric"}
