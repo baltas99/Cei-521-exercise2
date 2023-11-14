@@ -4,6 +4,6 @@ import weather
 from Currency import convert_currency
 
 weather.get_weather('Limassol')
-# weather.get_weather_for_city()
+weather.get_weather_for_city()
 
 convert_currency()
