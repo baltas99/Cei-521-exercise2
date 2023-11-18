@@ -1,4 +1,3 @@
-#Euro
 import streamlit as st
 import requests
 
@@ -9,14 +8,15 @@ def check_button_state(key):
 def convert_EUR():
     check_button_state("eur_button_clicked")  # Ensure the session state key is initialized
 
-    api_key = "83754dc3d2-6c852bf831-s3rryq"
-    amount = st.number_input("Enter the amount to convert:", min_value=0.01, step=0.01, format="%.2f")
-    target_currency = st.selectbox("Select the target currency:", ["USD", "JPY", "GBP"])
+    api_key = "847c5bfac8-916b284d26-s4bl4o"
+    amount = 1  # Set amount as 1 for exchange rate retrieval
+    target_currencies = ["USD", "JPY", "GBP"]
 
-    if st.button("Convert EUR"):
-        st.session_state["eur_button_clicked"] = True  # Update session state on button click
+    st.session_state["eur_button_clicked"] = True  # Set the button state as pressed
 
-        base_url = "https://api.fastforex.io/convert"
+    base_url = "https://api.fastforex.io/convert"
+
+    for target_currency in target_currencies:
         params = {
             "api_key": api_key,
             "from": "EUR",
@@ -29,9 +29,9 @@ def convert_EUR():
         if response.status_code == 200:
             data = response.json()
             converted_amount = data["result"]
-            st.success(f"{amount} EUR is approximately {converted_amount} {target_currency}")
+            st.success(f"1 EUR is approximately {converted_amount} {target_currency}")
         else:
-            st.error("Error while fetching data.")
+            st.error(f"Error while fetching data for {target_currency}.")
 
 def main():
     convert_EUR()  # Calling the function inside main
