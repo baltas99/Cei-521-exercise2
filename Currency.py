@@ -8,7 +8,7 @@ def check_button_state(key):
 def convert_EUR():
     check_button_state("eur_button_clicked")  # Ensure the session state key is initialized
 
-    api_key = "847c5bfac8-916b284d26-s4bl4o"
+    api_key = "83754dc3d2-6c852bf831-s3rryq"
     amount = 1  # Set amount as 1 for exchange rate retrieval
     target_currencies = ["USD", "JPY", "GBP"]
 
